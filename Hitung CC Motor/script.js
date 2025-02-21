@@ -1,22 +1,29 @@
-document.getElementById('cc-form').addEventListener('submit', function(event) {
-    event.preventDefault();
+function hitungCC() {
+    const diameter = parseFloat(document.getElementById('diameter').value);
+    const stroke = parseFloat(document.getElementById('stroke').value);
+    const cylinder = parseInt(document.getElementById('cylinder').value);
 
-    const boreInput = document.getElementById('bore').value.replace(',', '.');
-    const strokeInput = document.getElementById('stroke').value.replace(',', '.');
-    const cylindersInput = document.getElementById('cylinders').value;
-
-    const bore = parseFloat(boreInput);
-    const stroke = parseFloat(strokeInput);
-    const cylinders = parseInt(cylindersInput);
-
-    if (isNaN(bore) || isNaN(stroke) || isNaN(cylinders) || bore <= 0 || stroke <= 0 || cylinders <= 0) {
-        document.getElementById('result').textContent = 'mohon masukkan nilai yang valid.';
+    if (isNaN(diameter) || isNaN(stroke) || isNaN(cylinder)) {
+        alert("Silakan masukkan nilai yang valid.");
         return;
     }
 
-    const boreRadius = bore / 2;
-    const volumePerCylinder = Math.PI * Math.pow(boreRadius, 2) * stroke;
-    const totalVolume = volumePerCylinder * cylinders / 1000;
+    // Rumus untuk menghitung kapasitas mesin (CC) per silinder
+    const radius = diameter / 2; // mm
+    const volume = Math.PI * Math.pow(radius, 2) * stroke; // mm^3
+    const ccPerCylinder = volume / 1000; // konversi mm^3 ke cc
+    
+    // Total kapasitas mesin
+    const totalCC = ccPerCylinder * cylinder;
 
-    document.getElementById('result').textContent = `Kapasitas Silinder: ${totalVolume.toFixed(2)} cc`;
-});
+    // Tampilkan hasil di modal
+    document.getElementById('result').innerText = `Kapasitas Mesin: ${totalCC.toFixed(2)} CC`;
+    document.getElementById('resultModal').style.display = "block";
+}
+// Menutup modal jika pengguna mengklik di luar modal
+window.onclick = function(event) {
+    const modal = document.getElementById('resultModal');
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}

@@ -1,17 +1,34 @@
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hitung CC Motor</title>
+    <title>Kalkulator CC Motor</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Hitung CC Motor</h1>
-        <form id="cc-form">
+        <h1>Penghitung CC Motor</h1>
+        <label for="diameter">Diameter Piston (mm):</label>
+        <input type="number" id="diameter" placeholder="Contoh: 57.9" required>
 
-        </form>
+        <label for="stroke">Langkah Piston (mm):</label>
+        <input type="number" id="stroke" placeholder="Contoh: 58.0" required>
 
+        <label for="cylinder">Silinder</label>
+        <input type="number" id="cylinder" placeholder="Contoh : 1" required>
+
+        <button onclick="hitungCC()">Hitung CC</button>
     </div>
+
+    <!-- Modal -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="result"></h2>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
