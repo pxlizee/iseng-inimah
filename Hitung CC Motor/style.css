@@ -10,13 +10,27 @@ body {
 }
 
 .container {
+    position: relative; /* Tambahkan posisi relatif */
     max-width: 400px;
     width: 100%;
-    background: white;
+    background-color: rgba(255, 254, 254, 0.5);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
+    overflow: hidden; /* Sembunyikan bagian yang melampaui batas */
+}
+
+.container::before {
+    content: ""; /* Membuat elemen pseudo */
+    position: absolute; /* Posisi absolut */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit; /* Mengambil latar belakang dari .container */
+    filter: blur(10000px); /* Efek blur */
+    z-index: -1; /* Menempatkan di belakang konten */
 }
 
 h1 {
